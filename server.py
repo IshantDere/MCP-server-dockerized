@@ -1,14 +1,14 @@
+# app/server.py
 from fastmcp import FastMCP
 
-# Create MCP server
-mcp = FastMCP("Math MCP Server")
+mcp = FastMCP("add-server")
 
-# Define a tool
 @mcp.tool()
-def add_numbers(a: int, b: int) -> int:
-    """Add two numbers"""
+def add(a: int, b: int) -> int:
+    """
+    Add two numbers and return the result
+    """
     return a + b
 
-if __name__ == "__main__":
-    # Run over stdio (default for MCP)
-    mcp.run()
+# Expose as ASGI app for uvicorn
+app = mcp.app
